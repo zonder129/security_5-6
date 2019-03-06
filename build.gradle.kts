@@ -3,10 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     java
     kotlin("jvm") version "1.3.20"
+    application
 }
 
-group = "bmstu"
-version = "1.0-SNAPSHOT"
+application {
+    mainClassName = "CustomRsaKt"
+    version = "rsa-SNAPSHOT"
+}
 
 repositories {
     mavenCentral()
@@ -24,6 +27,6 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 tasks.withType<Jar> {
-    manifest.attributes["Main-Class"] = "ApplicationKt"
+    manifest.attributes["Main-Class"] = "CustomRsaKt"
     from(configurations.compile.map { if(it.isDirectory) it else zipTree(it) })
 }
